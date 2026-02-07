@@ -5,8 +5,9 @@ import { Task } from '@/types/api-types';
 import { Button } from '@/components/ui/button';
 import { Checkbox } from '@/components/ui/checkbox';
 import TaskForm from './task-form';
+import { DropdownMenu, DropdownMenuItem } from '@/components/ui/dropdown-menu';
 import { motion } from 'framer-motion';
-import { PencilIcon, Trash2, Calendar, CheckCircle2 } from 'lucide-react';
+import { PencilIcon, Trash2, Calendar, CheckCircle2, MoreVertical } from 'lucide-react';
 
 interface TaskCardProps {
   task: Task;
@@ -58,8 +59,8 @@ export default function TaskCard({
         }`}
       />
 
-      <div className="p-6">
-        <div className="flex items-start gap-4">
+      <div className="p-4 sm:p-6">
+        <div className="flex items-start gap-3 sm:gap-4">
           <div className="pt-0.5">
             <Checkbox
               id={`task-${task.id}`}
@@ -122,8 +123,8 @@ export default function TaskCard({
             )}
           </div>
 
-          {/* Actions */}
-          <div className="flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
+          {/* Actions - Desktop (hover) */}
+          <div className="hidden sm:flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
             {!isEditing && (
               <Button
                 variant="ghost"
@@ -142,6 +143,37 @@ export default function TaskCard({
             >
               <Trash2 className="h-4 w-4" />
             </Button>
+          </div>
+
+          {/* Actions - Mobile (dropdown menu) */}
+          <div className="flex sm:hidden">
+            {!isEditing && (
+              <DropdownMenu
+                trigger={
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="h-8 w-8 p-0 text-gray-400 hover:text-gray-600 dark:hover:text-gray-300 hover:bg-gray-100 dark:hover:bg-slate-700 rounded-lg"
+                  >
+                    <MoreVertical className="h-4 w-4" />
+                  </Button>
+                }
+                align="right"
+              >
+                <DropdownMenuItem onClick={() => setIsEditing(true)}>
+                  <div className="flex items-center gap-2">
+                    <PencilIcon className="h-4 w-4" />
+                    <span>Edit</span>
+                  </div>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={handleDelete} variant="destructive">
+                  <div className="flex items-center gap-2">
+                    <Trash2 className="h-4 w-4" />
+                    <span>Delete</span>
+                  </div>
+                </DropdownMenuItem>
+              </DropdownMenu>
+            )}
           </div>
         </div>
       </div>
