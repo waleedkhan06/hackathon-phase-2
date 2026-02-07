@@ -66,8 +66,8 @@ export default function StatsPage() {
 
   return (
     <AuthGuard requireAuth={true} redirectTo="/sign-in">
-      <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 dark:from-slate-950 dark:via-blue-950 dark:to-slate-950">
-        <main className="max-w-7xl mx-auto px-4 md:px-8 py-8">
+      <div className="min-h-full">
+        <main className="max-w-7xl mx-auto">
           {/* Header Section */}
           <motion.div
             initial={{ opacity: 0, y: -20 }}

@@ -139,7 +139,7 @@ export default function TasksPage() {
   return (
     <AuthGuard requireAuth={true} redirectTo="/sign-in">
       <div className="min-h-full">
-        <div className="max-w-5xl mx-auto px-4 md:px-8 py-8">
+        <div className="max-w-6xl mx-auto">
           {/* Welcome Hero */}
           <motion.div
             initial={{ opacity: 0, y: -16 }}
