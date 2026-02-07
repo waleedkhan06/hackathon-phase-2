@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  backend:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgresql://user:password@db:5432/primetask
+      - BETTER_AUTH_SECRET=your-secret-key-here
+    depends_on:
+      - db
+    volumes:
+      - ./data:/app/data  # For persistent data if using SQLite
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_DB=primetask
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=password
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - "5432:5432"
+
+volumes:
+  postgres_data:

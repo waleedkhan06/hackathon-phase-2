@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install --save-dev prettier)",
+      "Bash(ls:*)"
+    ]
+  }
+}
